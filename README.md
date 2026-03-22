@@ -2,14 +2,16 @@
 
 Reproduction for [vitest#9855](https://github.com/vitest-dev/vitest/issues/9855): `vitest related` with multiple projects corrupts Vue SFC compilation. Components inside `v-if`/`v-for` silently become `undefined` at runtime ("Invalid vnode type" errors).
 
-## Quick Start
+## Reproduce
 
 ```bash
 pnpm install
-pnpm test
+pnpm test          # runs: vitest related src/Target.vue --run
 ```
 
-Expected result on vitest 4.1.0 (without the fix): **browser test fails** — `ChildA` and `ChildB` don't render.
+**Expected on vitest 4.1.0** (without the fix): browser test **fails** — `ChildA` and `ChildB` are `undefined` and don't render.
+
+> **Note:** The bug only triggers via `vitest related` (which calls `getTestDependencies` across all projects). Running `vitest run` directly would pass because it skips the multi-project dependency resolution that causes the cache poisoning.
 
 ## How It Works
 
