@@ -59,7 +59,7 @@ describe('vue sfc cache poisoning across vite servers', () => {
     expect(returnedContent).not.toContain('ChildB')
   })
 
-  it('redundant SSR transforms across servers cause cache desync (the vitest bug)', async () => {
+  it.fails('redundant SSR transforms across servers cause cache desync (the vitest bug)', async () => {
     // Simulates what getTestDependencies does WITHOUT the transformCache fix.
     // Two Vite servers share compiler-sfc's module-level caches.
     // The redundant SSR transform on server2 refreshes parseCache but NOT
@@ -117,8 +117,12 @@ describe('vue sfc cache poisoning across vite servers', () => {
 
     const returnMatch = clientResult!.code.match(/__returned__\s*=\s*\{([^}]*)\}/)
     const returnedContent = returnMatch?.[1] || ''
-    expect(returnedContent).not.toContain('ChildA')
-    expect(returnedContent).not.toContain('ChildB')
+    // BUG: ChildA and ChildB should be in __returned__ but are missing because
+    // the mutated AST walker doesn't recurse into IfNodes (type=9).
+    // This test is marked .fails — the expect below is correct behavior,
+    // but the bug causes it to fail.
+    expect(returnedContent).toContain('ChildA')
+    expect(returnedContent).toContain('ChildB')
   })
 
   it('deduplicating SSR transforms prevents the bug (the transformCache fix)', async () => {
