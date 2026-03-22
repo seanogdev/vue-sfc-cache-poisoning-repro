@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "test": "vitest run",
-    "generate-fillers": "node generate-fillers.mjs"
+    "generate": "node generate-fillers.mjs"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^6.0.4",
