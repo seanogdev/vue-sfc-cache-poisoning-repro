@@ -1,0 +1,15 @@
+{
+  "name": "vue-sfc-cache-poisoning-repro",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "vitest run",
+    "generate-fillers": "node generate-fillers.mjs"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^6.0.4",
+    "vite": "^6.3.5",
+    "vitest": "^4.1.0",
+    "vue": "^3.5.29"
+  }
+}
