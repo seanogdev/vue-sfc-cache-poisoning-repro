@@ -1,2 +1,4 @@
 node_modules/
 src/fillers/
+.vitest-attachments/
+tests/__screenshots__/

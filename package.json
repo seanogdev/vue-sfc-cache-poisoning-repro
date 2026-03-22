@@ -3,11 +3,16 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "test": "vitest run",
+    "test": "vitest related src/Target.vue --run",
+    "test:run": "vitest run",
     "generate": "node generate-fillers.mjs"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^6.0.4",
+    "@vitest/browser": "^4.1.0",
+    "@vitest/browser-playwright": "^4.1.0",
+    "jsdom": "^26.1.0",
+    "playwright": "^1.52.0",
     "vite": "^6.3.5",
     "vitest": "^4.1.0",
     "vue": "^3.5.29"
