@@ -1,0 +1,8 @@
+<template>
+  <div class="filler-a-144">{{ msg }}</div>
+</template>
+<script setup lang="ts">
+import { ref } from 'vue'
+import './FillerA145.vue'
+const msg = ref('Filler A144')
+</script>

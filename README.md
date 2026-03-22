@@ -6,7 +6,6 @@ Reproduction for [vitest#9855](https://github.com/vitest-dev/vitest/issues/9855)
 
 ```bash
 pnpm install
-node generate-fillers.mjs
 pnpm test
 ```
 
